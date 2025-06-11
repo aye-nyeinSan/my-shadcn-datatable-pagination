@@ -1,0 +1,53 @@
+{
+  "name": "@rubi_who/shadcn-table-pagination",
+  "version": "1.0.0",
+  "description": "A reusable Shadcn DataTable component with pagination",
+  "keywords": [
+    "react",
+    "shadcn",
+    "datatable",
+    "pagination",
+    "ui",
+    "component"
+  ],
+  "homepage": "https://github.com/aye-nyeinSan/my-shadcn-datatable-pagination#readme",
+  "bugs": {
+    "url": "https://github.com/aye-nyeinSan/my-shadcn-datatable-pagination/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aye-nyeinSan/my-shadcn-datatable-pagination.git"
+  },
+  "license": "MIT",
+  "author": "ayenyeinsan (rubi)",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist",
+    "build": "tsc --project tsconfig.json",
+    "dev": "tsc --project tsconfig.json --watch",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.5",
+    "tailwindcss": "^4.1.9",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "@tanstack/react-table": "^8.21.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.514.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
