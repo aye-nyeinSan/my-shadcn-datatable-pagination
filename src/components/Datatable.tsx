@@ -161,7 +161,7 @@ export function DataTable<TData, TValue>({
                 onClick={() => {
                   handlePageChange(page);
                 } }
-                className={currentPage === page ? "bg-teal-600 text-white" : ""} size={undefined}              >
+                className={currentPage === page ? "bg-teal-600 text-white" : ""}   >
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -179,7 +179,7 @@ export function DataTable<TData, TValue>({
               } }
               className={currentPage === totalPages
                 ? "pointer-events-none opacity-50"
-                : ""} size={undefined}            />
+                : ""}   />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

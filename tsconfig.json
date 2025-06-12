@@ -15,9 +15,6 @@
     "moduleResolution": "node16",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "paths": {
-      "@/*": ["./src/*"] // Adjust if your Shadcn path is different
-    },
     "outDir": "./dist", // Output directory for compiled files
     "rootDir": "./src"
   },
