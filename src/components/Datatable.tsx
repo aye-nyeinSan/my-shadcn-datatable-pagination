@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "../components/ui/table.js"; 
 import {
   Pagination,
   PaginationContent,
@@ -20,7 +20,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "../components/ui/pagination.js"; 
 import { useState, useMemo } from "react";
 
 interface DataTableProps<TData, TValue> {
@@ -69,7 +69,6 @@ export function DataTable<TData, TValue>({
       }
       return pages;
     } else {
-      // Removed unnecessary console.log statement
 
       const startPage = Math.max(1, currentPage - 1); //1
       const endPage = Math.min(totalPages, startPage + maxPage - 1); //3
@@ -152,11 +151,8 @@ export function DataTable<TData, TValue>({
             <PaginationPrevious
               onClick={() => {
                 handlePageChange(currentPage - 1);
-              }}
-              className={
-                currentPage === 1 ? "pointer-events-none opacity-50" : ""
-              }
-            />
+              } }
+              className={currentPage === 1 ? "pointer-events-none opacity-50" : ""} size={undefined}            />
           </PaginationItem>
           {displayPage().map((page) => (
             <PaginationItem key={page}>
@@ -164,9 +160,8 @@ export function DataTable<TData, TValue>({
                 href="#"
                 onClick={() => {
                   handlePageChange(page);
-                }}
-                className={currentPage === page ? "bg-teal-600 text-white" : ""}
-              >
+                } }
+                className={currentPage === page ? "bg-teal-600 text-white" : ""} size={undefined}              >
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -181,13 +176,10 @@ export function DataTable<TData, TValue>({
             <PaginationNext
               onClick={() => {
                 handlePageChange(currentPage + 1);
-              }}
-              className={
-                currentPage === totalPages
-                  ? "pointer-events-none opacity-50"
-                  : ""
-              }
-            />
+              } }
+              className={currentPage === totalPages
+                ? "pointer-events-none opacity-50"
+                : ""} size={undefined}            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

@@ -11,8 +11,8 @@
     "noEmit": false, // Important: allows compilation
     "declaration": true, // Generates .d.ts files
     "jsx": "react-jsx",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "node16",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
