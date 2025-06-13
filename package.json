@@ -1,6 +1,6 @@
 {
   "name": "@rubi_who/shadcn-table-pagination",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A reusable Shadcn DataTable component with pagination",
   "keywords": [
     "react",
@@ -50,7 +50,8 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.5",
     "rollup": "^4.43.0",
-    "tailwindcss": "^4.1.9",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
@@ -65,8 +66,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "dependencies": {
-    "tslib": "^2.8.1",
-    "@tanstack/react-table": "^8.21.3"
-
+    "@tanstack/react-table": "^8.21.3",
+    "tslib": "^2.8.1"
   }
 }

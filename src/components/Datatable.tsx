@@ -107,19 +107,12 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => {
-                let sentimentScore: number = row.getValue(
-                  "confidence"
-                ) as number;
-                const shouldHighlight = sentimentScore <= 0.6;
                 let text: string = row.getValue("text") as string;
 
                 return (
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className={
-                      shouldHighlight ? "bg-yellow-50 hover:bg-yellow-100" : ""
-                    }
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id} className="p-4 ">

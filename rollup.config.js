@@ -1,10 +1,15 @@
+// rollup.config.js
 import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel"; 
-import terser  from "@rollup/plugin-terser"; 
+import babel from "@rollup/plugin-babel";
+import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
-import resolve, { nodeResolve } from "@rollup/plugin-node-resolve"; 
+import resolve, { nodeResolve } from "@rollup/plugin-node-resolve";
+import postcss from "rollup-plugin-postcss";
+
 
 import pkg from "./package.json" with { type: "json" };
+// const pkg = require("./package.json"); // Use CommonJS require() for package.json in Rollup config
+
 
 // Extract peer dependencies as external
 const peerDependencies = Object.keys(pkg.peerDependencies || {});
@@ -23,6 +28,10 @@ export default [
           react: "React",
           "react-dom": "ReactDOM",
           "@tanstack/react-table": "ReactTable",
+          "lucide-react": "lucideReact",
+          "class-variance-authority": "classVarianceAuthority",
+          clsx: "clsx",
+          "tailwind-merge": "tailwindMerge",
         },
       },
       {
@@ -59,12 +68,17 @@ export default [
           "@babel/preset-typescript",
         ],
       }),
-        terser(),
-        nodeResolve({
-            browser: true,
-            preferBuiltins: false,
-            extensions: [".js", ".jsx", ".ts", ".tsx"],
-      })
+      terser(),
+      nodeResolve({
+        browser: true,
+        preferBuiltins: false,
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      }),
+      postcss({
+        extract: true, 
+        modules: false,
+        use: ["sass"],
+}),
     ],
     external: (id) => peerDependencies.includes(id),
   },
