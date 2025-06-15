@@ -22,19 +22,36 @@ import {
   PaginationPrevious,
 } from "../components/ui/pagination.js"; 
 import { useState, useMemo } from "react";
+import { cn } from "../lib/utils.js";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   noCase?: string; // Optional prop for no data case
   itemsPerPage?: number;
+  tableContainerClassName?: string;
+  tableHeadClassName?: string;
+  tableRowClassName?: string;
+  tableCellClassName?: string;
+  paginationWrapperClassName?: string;
+  paginationButtonClassName?: string;
+  paginationLinkActiveClassName?: string;
+  paginationLinkInactiveClassName?: string;
 }
+
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   noCase = "No data available",
   itemsPerPage = 3, // Default items per page
+  tableContainerClassName,
+  tableHeadClassName,
+  tableRowClassName,
+  tableCellClassName,
+  paginationWrapperClassName,
+  paginationButtonClassName,
+  paginationLinkActiveClassName,
 }: DataTableProps<TData, TValue>) {
   //Pagination State
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,7 +86,6 @@ export function DataTable<TData, TValue>({
       }
       return pages;
     } else {
-
       const startPage = Math.max(1, currentPage - 1); //1
       const endPage = Math.min(totalPages, startPage + maxPage - 1); //3
       for (let i = startPage; i <= endPage; i++) {
@@ -81,7 +97,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="rounded-md border">
+      <div className={cn("rounded-md border", tableContainerClassName)}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -90,7 +106,10 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className="text-center w-[200px]"
+                      className={cn(
+                        "text-center w-[200px]",
+                        tableHeadClassName
+                      )}
                     >
                       {header.isPlaceholder
                         ? null
@@ -113,9 +132,16 @@ export function DataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
+                    className={cn(
+                      "border-b hover:bg-muted/50 data-[state=selected]:bg-muted",
+                      tableRowClassName
+                    )}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id} className="p-4 ">
+                      <TableCell
+                        key={cell.id}
+                        className={cn("p-4", tableCellClassName)}
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -129,7 +155,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className={cn("h-24 text-center", tableCellClassName)}
                 >
                   <span dangerouslySetInnerHTML={{ __html: noCase }} />
                 </TableCell>
@@ -138,14 +164,22 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <Pagination className="mt-5 flex justify-end mb-3">
+      <Pagination
+        className={cn("mt-5 flex justify-end mb-3", paginationWrapperClassName)}
+      >
         <PaginationContent className="flex">
           <PaginationItem>
             <PaginationPrevious
               onClick={() => {
                 handlePageChange(currentPage - 1);
-              } }
-              className={currentPage === 1 ? "pointer-events-none opacity-50" : ""} size={undefined}            />
+              }}
+              className={cn(
+                "mr-2 px-3 py-1",
+                currentPage === 1 ? "pointer-events-none opacity-50" : "",
+                paginationButtonClassName
+              )}
+              size={undefined}
+            />
           </PaginationItem>
           {displayPage().map((page) => (
             <PaginationItem key={page}>
@@ -153,8 +187,12 @@ export function DataTable<TData, TValue>({
                 href="#"
                 onClick={() => {
                   handlePageChange(page);
-                } }
-                className={currentPage === page ? "bg-teal-600 text-white" : ""}   >
+                }}
+                className={cn(
+                  currentPage === page ? "bg-teal-600 text-white" : "",
+                  paginationLinkActiveClassName
+                )}
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -169,10 +207,13 @@ export function DataTable<TData, TValue>({
             <PaginationNext
               onClick={() => {
                 handlePageChange(currentPage + 1);
-              } }
-              className={currentPage === totalPages
-                ? "pointer-events-none opacity-50"
-                : ""}   />
+              }}
+              className={cn(
+                currentPage === totalPages
+                  ? "pointer-events-none opacity-50"
+                  : "", paginationButtonClassName
+              )}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

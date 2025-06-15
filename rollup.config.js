@@ -30,7 +30,7 @@ export default [
           "@tanstack/react-table": "ReactTable",
           "lucide-react": "lucideReact",
           "class-variance-authority": "classVarianceAuthority",
-          clsx: "clsx",
+          "clsx": "clsx",
           "tailwind-merge": "tailwindMerge",
         },
       },
