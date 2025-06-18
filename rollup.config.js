@@ -5,10 +5,8 @@ import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import resolve, { nodeResolve } from "@rollup/plugin-node-resolve";
 import postcss from "rollup-plugin-postcss";
-
-
 import pkg from "./package.json" with { type: "json" };
-// const pkg = require("./package.json"); // Use CommonJS require() for package.json in Rollup config
+
 
 
 // Extract peer dependencies as external

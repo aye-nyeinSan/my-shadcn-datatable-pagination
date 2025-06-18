@@ -1,6 +1,6 @@
 {
   "name": "@rubi_who/shadcn-table-pagination",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "A reusable Shadcn DataTable component with pagination",
   "keywords": [
     "react",

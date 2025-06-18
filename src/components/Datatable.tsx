@@ -52,6 +52,7 @@ export function DataTable<TData, TValue>({
   paginationWrapperClassName,
   paginationButtonClassName,
   paginationLinkActiveClassName,
+  paginationLinkInactiveClassName,
 }: DataTableProps<TData, TValue>) {
   //Pagination State
   const [currentPage, setCurrentPage] = useState(1);
@@ -126,7 +127,6 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => {
-                let text: string = row.getValue("text") as string;
 
                 return (
                   <TableRow
@@ -175,10 +175,9 @@ export function DataTable<TData, TValue>({
               }}
               className={cn(
                 "mr-2 px-3 py-1",
-                currentPage === 1 ? "pointer-events-none opacity-50" : "",
+                currentPage === 1 , "pointer-events-none opacity-50" ,
                 paginationButtonClassName
               )}
-              size={undefined}
             />
           </PaginationItem>
           {displayPage().map((page) => (
@@ -189,8 +188,8 @@ export function DataTable<TData, TValue>({
                   handlePageChange(page);
                 }}
                 className={cn(
-                  currentPage === page ? "bg-teal-600 text-white" : "",
-                  paginationLinkActiveClassName
+                  currentPage === page ? paginationLinkActiveClassName || "bg-teal-600 text-white" :  paginationLinkInactiveClassName,
+                 
                 )}
               >
                 {page}
